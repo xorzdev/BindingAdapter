@@ -1,11 +1,15 @@
-package com.gavin.magicadapter;
+package me.gavin.adapter.base.base;
 
 import android.content.Context;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
 import android.view.View;
 
+import com.android.databinding.library.baseAdapters.BR;
+
 import java.util.List;
+
+import me.gavin.adapter.base.R;
 
 /**
  * DataBinding 基类适配器
@@ -14,33 +18,27 @@ import java.util.List;
  */
 public class BindingAdapter<T> extends RecyclerAdapter<T, ViewDataBinding> {
 
-    private int variableId;
-    private OnItemClickListener onItemClickListener;
+    private IntConsumer onItemClickListener;
 
-    public BindingAdapter(Context context, List<T> mData, @LayoutRes int layoutId, int variableId) {
-        super(context, mData, layoutId);
-        this.variableId = variableId;
+    public BindingAdapter(Context context, List<T> list, @LayoutRes int layoutId) {
+        super(context, list, layoutId);
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(IntConsumer onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
     @Override
-    public void onBind(RecyclerHolder<ViewDataBinding> holder, T t, final int position) {
-        holder.binding.setVariable(variableId, t);
+    protected void onBind(RecyclerHolder<ViewDataBinding> holder, T t, final int position) {
+        holder.binding.setVariable(BR.item, t);
         holder.binding.executePendingBindings();
         if (onItemClickListener != null) {
             holder.itemView.findViewById(R.id.item).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemClick(position);
+                    onItemClickListener.accept(position);
                 }
             });
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(int position);
     }
 }

@@ -1,4 +1,4 @@
-package com.gavin.magicadapter;
+package me.gavin.adapter.base.base;
 
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;

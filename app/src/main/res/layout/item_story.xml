@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.gavin.magicadapter.User" />
+            type="me.gavin.adapter.base.Story" />
 
     </data>
 
@@ -18,37 +18,28 @@
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"
-            app:imageUrl="@{item.head}" />
+            app:imageUrl="@{item.image}"
+            tools:ignore="contentDescription"
+            tools:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="12dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:freezesText="true"
-            android:gravity="center_vertical|start"
+            android:layout_marginLeft="12dp"
             android:lineSpacingMultiplier="1.2"
-            android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="2"
-            android:scrollHorizontally="true"
-            android:text="@{item.name}"
+            android:text="@{item.title}"
             android:textColor="#99000000"
             android:textSize="14sp"
-            tools:text="张三" />
+            tools:text="这就是理想主义，对彼此，对现实的妥协" />
 
     </LinearLayout>
 

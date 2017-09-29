@@ -1,4 +1,4 @@
-package com.gavin.magicadapter;
+package me.gavin.adapter.base.base;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * RecyclerView 基类列表适配器
  *
- * @author gavin.xiong 2016/12/9  2016/12/9
+ * @author gavin.xiong 2016/12/9
  */
 public abstract class RecyclerAdapter<T, B extends ViewDataBinding> extends RecyclerView.Adapter<RecyclerHolder<B>> {
 
@@ -21,9 +21,9 @@ public abstract class RecyclerAdapter<T, B extends ViewDataBinding> extends Recy
     protected List<T> mList;
     private int layoutId;
 
-    public RecyclerAdapter(Context context, List<T> mData, @LayoutRes int layoutId) {
+    public RecyclerAdapter(Context context, List<T> list, @LayoutRes int layoutId) {
         this.mContext = context;
-        this.mList = mData;
+        this.mList = list;
         this.layoutId = layoutId;
     }
 
@@ -39,11 +39,11 @@ public abstract class RecyclerAdapter<T, B extends ViewDataBinding> extends Recy
         onBind(holder, t, position);
     }
 
-    public abstract void onBind(RecyclerHolder<B> holder, T t, int position);
-
     @Override
     public int getItemCount() {
         return mList == null ? 0 : mList.size();
     }
+
+    protected abstract void onBind(RecyclerHolder<B> holder, T t, int position);
 
 }

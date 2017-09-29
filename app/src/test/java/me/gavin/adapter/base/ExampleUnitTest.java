@@ -1,4 +1,4 @@
-package com.gavin.magicadapter;
+package me.gavin.adapter.base;
 
 import org.junit.Test;
 
